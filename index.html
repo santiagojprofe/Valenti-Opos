@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OposFilosofía — Temario de Filosofía para Secundaria</title>
+  <title>Valenti Oposiciones — Temario de Filosofía para Secundaria</title>
   <link rel="icon" type="image/png" href="assets/phi%20favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container navbar__inner">
-      <a href="#top" class="logo">Opos<span>Filosofía</span></a>
+      <a href="#top" class="logo">Oposiciones<span> Filosofía</span><br><span>Claudia</span> Valenti</a>
       <input type="checkbox" id="menu-toggle" class="menu-toggle">
       <label for="menu-toggle" class="hamburger" aria-label="Abrir menú">
         <span></span><span></span><span></span>
@@ -287,20 +287,11 @@
       <div class="container contacto__inner">
         <p class="eyebrow">Contacto</p>
         <h2 class="contacto__title">¿Hablamos antes de decidirte?</h2>
-        <p class="contacto__text">
-          Puedes contactarme para hablar sobre tus necesidades específicas a este email:<br><b>valenti.opos@gmail.com</b>
-        </p>
 
-        <label for="modal-toggle" class="btn btn--primary">¿Qué te interesa?</label>
-        <input type="checkbox" id="modal-toggle" class="modal-toggle">
-
-        <div class="modal-overlay">
-          <label for="modal-toggle" class="modal-overlay__backdrop"></label>
+        <div class="contacto__form-panel">
           <div class="modal">
-            <label for="modal-toggle" class="modal__close" aria-label="Cerrar">✕</label>
-
             <div id="modal-form-wrap">
-              <h2 class="modal__title">Empieza tu camino hacia la plaza</h2>
+              <h2 class="modal__title modal__title--center">Empieza tu camino hacia la plaza</h2>
               <p class="modal__subtitle">Rellena el formulario y te respondo por email (revisa Spam!).</p>
 
               <form
@@ -320,12 +311,14 @@
                 <div class="form-group">
                   <label for="f-interes">Me interesa</label>
                   <select id="f-interes" name="producto" required>
+                    <option value="" disabled selected hidden>Elige una opción</option>
                     <option value="Temario">Temario completo</option>
                     <option value="programación">Programación Didáctica</option>
                     <option value="Pack completo">Pack completo</option>
+                    <option value="Otro">Otro</option>
                   </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="f-comentario-group" style="display: none;">
                   <label for="f-comentario">Comentario</label>
                   <textarea id="f-comentario" name="comentario" rows="4" maxlength="500" placeholder="Escribe aquí cualquier detalle adicional..."></textarea>
                   <span class="form-counter" id="f-comentario-counter">0 / 500</span>
@@ -333,6 +326,7 @@
                 <input type="hidden" name="access_key" value="316674b7-7df1-4888-a75e-f0556bceaf0a">
                 <input type="hidden" name="subject" value="Nueva solicitud — OposFilosofía">
                 <button type="submit" class="btn btn--primary btn--full" id="btn-submit">Enviar solicitud</button>
+                <p class="form-group__label">Si no encuentras lo que buscas, envíame un email a <strong>valenti.opos@gmail.com</strong></p>
               </form>
             </div>
 
@@ -340,7 +334,7 @@
               <div class="modal-confirm__icon">✓</div>
               <h2 class="modal__title">¡Mensaje enviado!</h2>
               <p class="modal__subtitle">Te respondo por correo con toda la información sobre tu selección (revisa Spam!).</p>
-              <label for="modal-toggle" class="btn btn--primary btn--full" style="margin-top:1rem;">Cerrar</label>
+              <button type="button" class="btn btn--primary btn--full" style="margin-top:1rem;" onclick="document.getElementById('modal-form-wrap').style.display='block'; document.getElementById('modal-confirm').style.display='none'; document.getElementById('contacto-form').reset(); document.getElementById('btn-submit').textContent='Enviar solicitud'; document.getElementById('btn-submit').disabled=false; document.getElementById('f-interes').value=''; document.getElementById('f-comentario-group').style.display='none'; document.getElementById('f-comentario').value=''; document.getElementById('f-comentario-counter').textContent='0 / 500';">Cerrar</button>
             </div>
           </div>
         </div>
@@ -382,7 +376,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
-      <p>&copy; OposFilosofía — Claudia Fernandez García. Todos los derechos reservados.</p>
+      <p>&copy; Valenti Oposiciones — Claudia Fernandez García. Todos los derechos reservados.</p>
       <div class="footer__links">
         <a href="#">Política de privacidad</a>
         <a href="#">Términos y condiciones</a>
@@ -410,10 +404,27 @@
     const formWrap  = document.getElementById('modal-form-wrap');
     const confirm   = document.getElementById('modal-confirm');
     const btnSubmit = document.getElementById('btn-submit');
+    const select    = document.getElementById('f-interes');
     const textarea  = document.getElementById('f-comentario');
+    const textareaGroup = document.getElementById('f-comentario-group');
     const counter   = document.getElementById('f-comentario-counter');
 
-    textarea.addEventListener('input', () => counter.textContent = `${textarea.value.length} / 500`);
+    function toggleComentario() {
+      const show = select.value === 'Otro';
+      textareaGroup.style.display = show ? 'flex' : 'none';
+      textarea.required = show;
+      if (!show) {
+        textarea.value = '';
+        counter.textContent = '0 / 500';
+      }
+    }
+
+    textarea.addEventListener('input', () => {
+      counter.textContent = `${textarea.value.length} / 500`;
+    });
+
+    select.addEventListener('change', toggleComentario);
+    toggleComentario();
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
@@ -425,6 +436,7 @@
           formWrap.style.display = 'none';
           confirm.style.display  = 'block';
           form.reset();
+          toggleComentario();
         } else {
           btnSubmit.textContent = 'Error al enviar. Inténtalo de nuevo.';
           btnSubmit.disabled = false;
@@ -435,14 +447,7 @@
       }
     });
 
-    document.getElementById('modal-toggle').addEventListener('change', function () {
-      if (!this.checked) setTimeout(() => {
-        formWrap.style.display = 'block';
-        confirm.style.display  = 'none';
-        btnSubmit.textContent  = 'Enviar solicitud';
-        btnSubmit.disabled     = false;
-      }, 300);
-    });
+
   </script>
 
   <script>

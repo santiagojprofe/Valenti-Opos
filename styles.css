@@ -698,23 +698,9 @@ details[open] .temario__arrow { transform: rotate(-135deg); }
 }
 
 /* ── MODAL ── */
-.modal-toggle { display: none; }
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-.modal-toggle:checked ~ .modal-overlay { display: flex; }
-.modal-overlay__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(58,41,32,.5);
-  backdrop-filter: blur(4px);
-  cursor: pointer;
+.contacto__form-panel {
+  max-width: 640px;
+  margin: 0 auto;
 }
 .modal {
   background: var(--clr-bg);
@@ -726,6 +712,7 @@ details[open] .temario__arrow { transform: rotate(-135deg); }
   position: relative;
   box-shadow: var(--shadow-lift);
   z-index: 1;
+  margin-inline: auto;
 }
 .modal__close {
   position: absolute;
@@ -744,6 +731,10 @@ details[open] .temario__arrow { transform: rotate(-135deg); }
   font-size: 1.5rem;
   margin-bottom: .4rem;
   padding-right: 2rem;
+}
+.modal__title--center {
+  text-align: center;
+  padding-right: 0;
 }
 .modal__subtitle {
   font-size: .9rem;
