@@ -121,17 +121,7 @@
             para que otras personas no tengan que empezar desde cero como hice yo.
             Hoy sigo dando clase y, en paralelo, acompaño a opositores de toda España.
           </p>
-          <p class="about__bio">Puedes consultar mis redes sociales para saber más sobre mi trayectoria profesional.</p>
-          <div class="about__social-links">
-            <a class="about__social-link" href="https://www.linkedin.com/in/claudiafernandezgarcia/" target="_blank" rel="noopener noreferrer">
-              <img src="assets/linkedin%20logo.webp" alt="Logo de LinkedIn">
-              <span>LinkedIn</span>
-            </a>
-            <a class="about__social-link" href="https://www.instagram.com/filoclaus" target="_blank" rel="noopener noreferrer">
-              <img src="assets/instagramLogo.png" alt="Logo de Instagram">
-              <span>Instagram</span>
-            </a>
-          </div>
+          
           <ul class="checklist">
             <li><span class="icon-check" aria-hidden="true">✓</span>Temario propio, escrito por mí, no es un recopilatorio de varias fuentes</li>
             <li><span class="icon-check" aria-hidden="true">✓</span>Actualizado a la LOMLOE y revisado en cada convocatoria</li>
@@ -393,8 +383,9 @@
   <footer class="footer">
     <div class="container footer__inner">
       <p>&copy; Valenti Oposiciones — Claudia Fernandez García. Todos los derechos reservados.</p>
+  
       <div class="footer__social-block">
-        <p class="footer__social-title">Redes sociales</p>
+        <p class="footer__social-title">Redes Sociales</p>
         <div class="footer__socials">
           <a href="https://www.linkedin.com/in/claudiafernandezgarcia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <img src="assets/linkedin%20logo.webp" alt="LinkedIn">
@@ -402,19 +393,32 @@
           <a href="https://www.instagram.com/filoclaus" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <img src="assets/instagramLogo.png" alt="Instagram">
           </a>
+          <a href="https://www.goodreads.com/TU_USUARIO" target="_blank" rel="noopener noreferrer" aria-label="Goodreads">
+            <img src="assets/goodreadsfavicon.png" alt="Goodreads">
+          </a>
           <a href="https://www.caerellia.com/" target="_blank" rel="noopener noreferrer" aria-label="Caerellia">
-            <img src="assets/caereliafavicon.jpg" alt="Caerellia">
+            <img src="assets/caerelliafavicon.jpg" alt="Caerellia">
           </a>
         </div>
       </div>
+  
       <div class="footer__links">
-        <a href="#">Política de privacidad</a>
-        <a href="#">Términos y condiciones</a>
-        <a href="#">Aviso legal</a>
+        <button class="footer__legal-btn" data-modal="privacidad">Política de privacidad</button>
+        <button class="footer__legal-btn" data-modal="terminos">Términos y condiciones</button>
+        <button class="footer__legal-btn" data-modal="aviso">Aviso legal</button>
       </div>
     </div>
   </footer>
-
+  <!-- ── MODALES LEGALES ── -->
+  <div class="legal-overlay" id="legal-overlay" aria-hidden="true">
+    <div class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+      <div class="legal-modal__header">
+        <h2 class="legal-modal__title" id="legal-modal-title"></h2>
+        <button class="legal-modal__close" id="legal-close" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="legal-modal__body" id="legal-body"></div>
+    </div>
+  </div>
   <script>
     // Active nav highlight
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -568,6 +572,97 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   goTo(current, false);
   startAuto();
 })();
+// ── Modales legales ──
+const legalContent = {
+  privacidad: {
+    titulo: 'Política de privacidad',
+    cuerpo: `
+      <h3>Responsable del tratamiento</h3>
+      <p>Claudia Fernandez García, con email de contacto <strong>valenti.opos@gmail.com</strong>, es la responsable del tratamiento de los datos personales recogidos a través de este sitio web.</p>
+
+      <h3>Datos que se recogen</h3>
+      <p>A través del formulario de contacto se recogen nombre, dirección de correo electrónico y el producto de interés indicado. Estos datos se utilizan exclusivamente para responder a tu solicitud.</p>
+
+      <h3>Base legal</h3>
+      <p>El tratamiento se basa en el consentimiento que prestas al enviar el formulario. Puedes retirar dicho consentimiento en cualquier momento escribiéndonos al correo indicado.</p>
+
+      <h3>Conservación de datos</h3>
+      <p>Los datos se conservan únicamente durante el tiempo necesario para gestionar tu solicitud y, en su caso, la relación comercial derivada de ella.</p>
+
+      <h3>Tus derechos</h3>
+      <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición y portabilidad escribiendo a <strong>valenti.opos@gmail.com</strong>. Si consideras que el tratamiento no es conforme a la normativa, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank">aepd.es</a>).</p>
+    `
+  },
+  terminos: {
+    titulo: 'Términos y condiciones',
+    cuerpo: `
+      <h3>Objeto</h3>
+      <p>Los presentes términos regulan la adquisición de materiales didácticos para la preparación de oposiciones de Filosofía de Educación Secundaria ofrecidos por Claudia Fernandez García a través de este sitio web.</p>
+
+      <h3>Entrega del material</h3>
+      <p>Una vez confirmado el pago, el material se enviará en formato PDF al correo electrónico indicado en un plazo máximo de 48 horas laborables.</p>
+
+      <h3>Uso del material</h3>
+      <p>El material adquirido es para uso personal y exclusivo del comprador. Queda prohibida su reproducción, distribución o puesta a disposición de terceros, total o parcialmente, sin autorización expresa.</p>
+
+      <h3>Política de devoluciones</h3>
+      <p>Dado que se trata de contenido digital de descarga inmediata, no se admiten devoluciones una vez que el archivo ha sido enviado, salvo error imputable a la vendedora.</p>
+
+      <h3>Legislación aplicable</h3>
+      <p>Estos términos se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales del domicilio del consumidor.</p>
+    `
+  },
+  aviso: {
+    titulo: 'Aviso legal',
+    cuerpo: `
+      <h3>Titular del sitio web</h3>
+      <p>Claudia Fernandez García<br>
+      Correo electrónico: <strong>valenti.opos@gmail.com</strong></p>
+
+      <h3>Objeto</h3>
+      <p>Este sitio web tiene como finalidad presentar y comercializar materiales para la preparación de oposiciones de Filosofía de Educación Secundaria en España.</p>
+
+      <h3>Propiedad intelectual</h3>
+      <p>Todos los contenidos de este sitio web (textos, imágenes y materiales descargables) son propiedad de Claudia Fernandez García y están protegidos por la legislación de propiedad intelectual vigente. Queda prohibida su reproducción sin autorización expresa.</p>
+
+      <h3>Exclusión de responsabilidad</h3>
+      <p>La titular no se responsabiliza de los daños que pudieran derivarse del uso inadecuado del material adquirido ni de la interpretación que cada opositor haga de su contenido respecto a los requisitos específicos de cada convocatoria.</p>
+    `
+  }
+};
+
+const legalOverlay = document.getElementById('legal-overlay');
+const legalTitle   = document.getElementById('legal-modal-title');
+const legalBody    = document.getElementById('legal-body');
+const legalClose   = document.getElementById('legal-close');
+
+document.querySelectorAll('.footer__legal-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.modal;
+    const content = legalContent[key];
+    if (!content) return;
+    legalTitle.textContent  = content.titulo;
+    legalBody.innerHTML     = content.cuerpo;
+    legalOverlay.classList.add('open');
+    legalOverlay.setAttribute('aria-hidden', 'false');
+    legalClose.focus();
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeLegalModal() {
+  legalOverlay.classList.remove('open');
+  legalOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+legalClose.addEventListener('click', closeLegalModal);
+legalOverlay.addEventListener('click', e => {
+  if (e.target === legalOverlay) closeLegalModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLegalModal();
+});
   </script>
 </body>
 </html>

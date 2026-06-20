@@ -936,25 +936,25 @@ details[open] .temario__arrow { transform: rotate(-135deg); }
   flex-wrap: wrap;
   gap: 1rem;
 }
-.footer__inner > p:first-child {
-  align-self: center;
+.footer p {
+  font-size: .8rem;
+  color: var(--clr-rose);
+  font-family: var(--ff-mono);
+  letter-spacing: .03em;
   margin: 0;
 }
-.footer p { font-size: .8rem; color: var(--clr-rose); font-family: var(--ff-mono); letter-spacing: .03em; }
 .footer__social-block {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: .35rem;
-  align-self: center;
+  gap: .75rem;
 }
 .footer__social-title {
-  margin: 0;
   font-size: .72rem;
   color: var(--clr-rose-mid);
-  text-transform: uppercase;
   letter-spacing: .12em;
-  line-height: 1.2;
+  font-family: var(--ff-mono);
+  white-space: nowrap;
+  margin: 0;
 }
 .footer__socials {
   display: flex;
@@ -968,31 +968,110 @@ details[open] .temario__arrow { transform: rotate(-135deg); }
   width: 2rem;
   height: 2rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(232, 201, 184, .18);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(232,201,184,.18);
   transition: background .15s, transform .15s;
 }
-.footer__socials a:hover { background: rgba(255, 255, 255, .12); transform: translateY(-1px); }
+.footer__socials a:hover { background: rgba(255,255,255,.12); transform: translateY(-1px); }
 .footer__socials img {
-  width: .95rem;
-  height: .95rem;
+  width: 1rem;
+  height: 1rem;
   object-fit: contain;
   display: block;
+  border-radius: 3px;
 }
-.footer__links { display: flex; gap: 1.5rem; }
-.footer__links a { font-size: .8rem; color: var(--clr-rose-mid); font-family: var(--ff-mono); transition: color .15s; }
-.footer__links a:hover { color: #fff; }
+.footer__links { display: flex; gap: 1.5rem; align-items: center; }
+.footer__legal-btn {
+  font-size: .8rem;
+  color: var(--clr-rose-mid);
+  font-family: var(--ff-mono);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color .15s;
+  letter-spacing: .03em;
+}
+.footer__legal-btn:hover { color: #fff; }
 
 @media (max-width: 640px) {
-  .footer__inner {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .footer__social-block {
-    align-items: flex-start;
-  }
+  .footer__inner { align-items: flex-start; flex-direction: column; }
+  .footer__social-block { flex-direction: column; align-items: flex-start; gap: .4rem; }
 }
+/* ── MODALES LEGALES ── */
+.legal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(58,41,32,.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.legal-overlay.open { display: flex; }
 
+.legal-modal {
+  background: var(--clr-bg);
+  border-radius: var(--radius-xl);
+  width: min(640px, 100%);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+}
+.legal-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--clr-rose);
+  flex-shrink: 0;
+}
+.legal-modal__title {
+  font-family: var(--ff-display);
+  font-size: 1.3rem;
+  color: var(--clr-brown-dk);
+  letter-spacing: -.02em;
+}
+.legal-modal__close {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--clr-muted);
+  cursor: pointer;
+  padding: .25rem .4rem;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color .15s;
+  flex-shrink: 0;
+}
+.legal-modal__close:hover { color: var(--clr-brown-dk); }
+
+.legal-modal__body {
+  padding: 1.5rem 2rem 2rem;
+  overflow-y: auto;
+  font-size: .9rem;
+  color: var(--clr-brown);
+  line-height: 1.75;
+}
+.legal-modal__body h3 {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  color: var(--clr-brown-dk);
+  margin: 1.25rem 0 .4rem;
+}
+.legal-modal__body h3:first-child { margin-top: 0; }
+.legal-modal__body p { margin-bottom: .75rem; }
+.legal-modal__body a { color: var(--clr-accent); text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .legal-modal__header { padding: 1.25rem 1.25rem .75rem; }
+  .legal-modal__body   { padding: 1.25rem; }
+}
 /* ─────────────────────────────────
    RESPONSIVE
 ───────────────────────────────── */
