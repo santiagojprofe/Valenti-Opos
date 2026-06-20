@@ -38,10 +38,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
   -webkit-text-size-adjust: 100%;
 }
-section[id] { scroll-margin-top: 88px; }
+section[id] { scroll-margin-top: 72px; }
 body {
   font-family: var(--ff-body);
   background: var(--clr-bg);
@@ -951,6 +950,7 @@ details[open] .temario__arrow { transform: rotate(-135deg); }
 }
 
 @media (max-width: 640px) {
+  section[id] { scroll-margin-top: 60px; }
   .navbar__inner {
     height: auto;
     min-height: 56px;
@@ -990,6 +990,9 @@ details[open] .temario__arrow { transform: rotate(-135deg); }
     padding: 1.25rem 1.5rem;
     gap: 1rem;
     box-shadow: 0 8px 24px rgba(58,41,32,.08);
+  }
+  .about__linkedin {
+    margin-inline: auto;
   }
   .menu-toggle:checked ~ .nav-links { display: flex; }
   .stats { flex-direction: column; align-items: center; }

@@ -15,7 +15,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container navbar__inner">
-      <a href="#top" class="logo"><span>Claudia</span> Valenti - Oposiciones<span> Filosofía</span></a>
+      <a href="#top" class="logo"><span>Claudia</span> Valenti - Oposiciones<span> Filosofía</span> </a>
       <input type="checkbox" id="menu-toggle" class="menu-toggle">
       <label for="menu-toggle" class="hamburger" aria-label="Abrir menú">
         <span></span><span></span><span></span>
@@ -43,7 +43,7 @@
             </div>
             <div>
               <h2 class="about__name">Claudia Fernandez García</h2>
-              <p class="about__meta">Profesora de Filosofía en Enseñanza Secundaria</p>
+              <p class="about__meta">Profesora de Enseñanza Secundaria, especialidad Filosofía</p>
             </div>
           </div>
           <h1 class="hero__title">El temario que me llevó a la plaza, ahora preparado para la tuya</h1>
@@ -451,7 +451,12 @@
       }
     });
 
-
+    // Cerrar menú hamburguesa al pulsar un enlace de navegación
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('menu-toggle').checked = false;
+  });
+});
   </script>
 
   <script>
