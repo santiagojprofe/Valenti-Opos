@@ -1,8 +1,13 @@
 # Ignorar todo
 *
 
-# Excepciones
+# Excepciones de archivos raíz
 !index.html
 !styles.css
 !CNAME
 !.gitignore
+
+# Excepciones para assets/img
+!assets/
+!assets/img/
+!assets/img/**
